@@ -16,6 +16,7 @@
 			"enableNonRootDocker": "true",
 			"moby": "true"
 		},
+        "ghcr.io/earthly/devcontainer-features/earthly:1": {}
 	},
 
 	"customizations": {
@@ -27,6 +28,12 @@
 			]
 		}
 	},
-
-	"postAttachCommand": "docker login -u ${GHCR_USERNAME} -p ${GHCR_PAT}"
+    "portsAttributes": {
+        "8371": {
+            "label": "Docker Proxy",
+            "onAutoForward": "ignore"
+        }
+    },
+    
+	"postAttachCommand": "docker login ghcr.io -u ${GHCR_USERNAME} -p ${GHCR_PAT}"
 }
